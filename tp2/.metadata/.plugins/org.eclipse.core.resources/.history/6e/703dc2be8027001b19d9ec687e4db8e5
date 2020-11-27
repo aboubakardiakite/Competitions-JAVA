@@ -1,0 +1,119 @@
+package competition;
+
+import java.util.*;
+
+import io.*;
+
+public class CompetitonMain {
+
+	public static void main(String[] args) throws NumberNotPowerOf2Exception {
+
+						List<Competitor> competiteurs = new ArrayList<Competitor>();
+						List<Competitor> competiteursfinal = new ArrayList<Competitor>();
+						List<League> league =new ArrayList<League>();
+			
+					
+	
+						int n=0;
+						int m=0;
+						String competiteur;
+						
+						
+			
+						System.out.println("Choisissez le type de competition Tournament(1) League(2) et Master(3)");
+						m = Integer.parseInt(Input.readString());
+//						while(m!=1 || m!=2 || m!=3) {
+//							System.out.println("désole recommencer s.v.p Tournament(1) League(2) et Master(3)");
+//							m = Integer.parseInt(Input.readString());
+//						}
+						
+						
+						
+						if(m==3) {
+							System.out.println("Entrez le nombre de poules que vous voulez former s.v.p");
+							int nPoules = Integer.parseInt(Input.readString());
+							
+							System.out.println("Entrez le nombre de competiteur former s.v.p");
+							int nbCompetiteur = Integer.parseInt(Input.readString());
+							
+							while(nbCompetiteur < 2*nPoules) {
+								System.out.println("desolé :( le nombre de competiteur est insuffisant saisissez à nouveau s.v.p");
+								nbCompetiteur = Integer.parseInt(Input.readString());
+						
+							}
+							
+							System.out.println("Entrez le nom des competiteurs s.v.p");
+							
+							while(n<nbCompetiteur) {
+								competiteur = Input.readString();
+								competiteurs.add(new Competitor(competiteur));
+								n=n+1;
+							
+							}
+							
+							
+							try {
+						        Strategy strategie1 = new StrateyOne();
+								Master master = new Master(competiteurs, nPoules,strategie1);
+								master.creerPoules();
+								master.faireLeague(); 
+								master.play(competiteurs);
+							
+							}catch(NumberNotPowerOf2Exception e) {
+							System.out.println("Le nombre de competiteur n'est pas puissance de deux veuillez recommencer !");
+							}
+							
+						}
+						if(m==2) {
+								System.out.println("Entrez le nombre de competiteur  s.v.p");
+								int nbCompetiteur = Integer.parseInt(Input.readString());
+								System.out.println("Entrez le nom des competiteurs s.v.p");
+							
+								while(n<nbCompetiteur) {
+									competiteur = Input.readString();
+								competiteurs.add(new Competitor(competiteur));
+								n=n+1;
+							
+								}
+								
+								League tournois = new League(competiteurs);
+								tournois.play(competiteurs);
+								tournois.ranking();
+							
+						}
+						
+						if(m==1) {
+								System.out.println("Entrez le nombre de competiteur  s.v.p");
+								int nbCompetiteur = Integer.parseInt(Input.readString());
+							
+								System.out.println("Entrez le nom des competiteurs s.v.p");
+						
+				
+								Tournament tournois1 = new Tournament(competiteurs);
+								tournois1.play(competiteurs);
+								tournois1.ranking();
+							
+							
+							
+							
+						}
+						
+				
+						
+					
+						
+						
+						
+						
+						
+
+							
+						
+						
+						
+
+						
+	}
+}
+			
+				
